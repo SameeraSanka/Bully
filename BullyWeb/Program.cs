@@ -1,4 +1,5 @@
-using BullyWeb.Data;
+using Bully.DataAccess.Data;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

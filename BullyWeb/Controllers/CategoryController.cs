@@ -1,5 +1,5 @@
-﻿using BullyWeb.Data;
-using BullyWeb.Models;
+﻿using Bulky.Models;
+using Bully.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BullyWeb.Controllers

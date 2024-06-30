@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BullyWeb.Migrations
+namespace Bully.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTable : Migration
