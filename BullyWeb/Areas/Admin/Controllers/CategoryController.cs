@@ -13,6 +13,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
         public IActionResult Index()
         {
             List<Category> objCategory = _unitOfWork.Category.GetAll().ToList();

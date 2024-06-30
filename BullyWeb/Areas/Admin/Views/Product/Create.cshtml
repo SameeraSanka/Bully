@@ -1,0 +1,75 @@
+﻿@model Product
+
+<form method="post" class="p-2">
+	<div class=" p-3 my-4 border-0 rounded  shadow">
+		<div class="row pb-2">
+			<h1 class="text-primary"> Create Product</h1>
+		</div>
+		<div asp-validation-summary="All"></div>
+		<hr />
+
+		<div class="mb=3 p-1">
+			<label asp-for="Title" class=" p-1"></label>
+			<input asp-for="Title" type="text" class="form-control border-0 shadow" />
+			<span asp-validation-for="Title" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="Description" class="p-1"></label>
+			<textarea asp-for="Description" type="text" class="form-control border-0 shadow" ></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="ISBN" class="p-1"></label>
+			<input asp-for="ISBN" type="text" class="form-control border-0 shadow" />
+			<span asp-validation-for="ISBN" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="Author" class="p-1"></label>
+			<input asp-for="Author" type="text" class="form-control border-0 shadow" />
+			<span asp-validation-for="Author" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="ListPrice" class="p-1"></label>
+			<input asp-for="ListPrice" class="form-control border-0 shadow" />
+			<span asp-validation-for="ListPrice" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="Price" class="p-1"></label>
+			<input asp-for="Price" class="form-control border-0 shadow" />
+			<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="Price50" class="p-1"></label>
+			<input asp-for="Price50" class="form-control border-0 shadow" />
+			<span asp-validation-for="Price50" class="text-danger"></span>
+		</div>
+
+		<div class="mb=3 p-1">
+			<label asp-for="Price100" class="p-1"></label>
+			<input asp-for="Price100" class="form-control border-0 shadow" />
+			<span asp-validation-for="Price100" class="text-danger"></span>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary mt-4 form-control">Create Product</button>
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="Product" asp-action="Index" class="btn btn-danger mt-4 form-control">Go Back To List </a>
+			</div>
+		</div>
+
+
+	</div>
+</form>
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
