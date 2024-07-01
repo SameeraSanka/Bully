@@ -1,0 +1,107 @@
+﻿@model ProductVM
+
+<form method="post" class="p-2" enctype="multipart/form-data">
+	<input asp-for="Product.Id" hidden />
+	<input asp-for="Product.ImageUrl" hidden />
+
+	<div class="row">
+		<div class="col-10">
+			<div class=" p-3 my-4 border-0 rounded  shadow">
+				<div class="row pb-2">
+					<h1 class="text-primary"> @(Model.Product.Id != 0 ? "Update" : "Create") Product</h1>
+
+				</div>
+				@* <div asp-validation-summary="All"></div> *@
+				<hr />
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.Title" class=" p-1"></label>
+					<input asp-for="Product.Title" type="text" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.Title" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.Description" class="p-1"></label>
+					<textarea asp-for="Product.Description" class="form-control border-0 shadow"></textarea>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.ISBN" class="p-1"></label>
+					<input asp-for="Product.ISBN" type="text" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.ISBN" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.Author" class="p-1"></label>
+					<input asp-for="Product.Author" type="text" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.Author" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.ListPrice" class="p-1"></label>
+					<input asp-for="Product.ListPrice" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.Price" class="p-1"></label>
+					<input asp-for="Product.Price" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.Price" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.Price50" class="p-1"></label>
+					<input asp-for="Product.Price50" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.Price50" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.Price100" class="p-1"></label>
+					<input asp-for="Product.Price100" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.Price100" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.CategoryId" class="p-1"></label>
+					<select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="p-1 form-control">
+						<option disabled selected>--Select Category--</option>
+					</select>
+					<span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+				</div>
+
+				<div class="mb=3 p-1">
+					<label asp-for="Product.ImageUrl" class="p-1"></label>
+					<input type="file" name="file" class="form-control border-0 shadow" />
+					<span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+				</div>
+
+				<div class="row">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-primary mt-4 form-control">@(Model.Product.Id != 0 ? "Update" : "Create") Product</button>
+					</div>
+					<div class="col-6 col-md-3">
+						<a asp-controller="Product" asp-action="Index" class="btn btn-danger mt-4 form-control">Go Back To List </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9"/>
+		</div>
+	</div>
+
+
+
+</form>
+@section Scripts {
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+		});
+	</script>
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
