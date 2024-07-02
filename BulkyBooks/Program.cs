@@ -1,6 +1,7 @@
 using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
 using Bully.DataAccess.Data;
+using Microsoft.AspNetCore.Identity;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaulConnection")));
+
+//options => options.SignIn.RequireConfirmedAccount = true me kalla ain krama email eka confirm krnne thuwa lo wenna puluwan
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddRazorPages(); //meken thama identity eke thiyna pages hoygnne
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -28,9 +35,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
-
+app.UseAuthorization();
+app.MapRazorPages(); //methana eka call krnna one
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
