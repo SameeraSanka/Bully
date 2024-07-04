@@ -4,6 +4,7 @@ using Bully.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240704151518_addCompanyTabletoDB")]
+    partial class addCompanyTabletoDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,58 +95,6 @@ namespace Bulky.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Kandy",
-                            Name = "You Go",
-                            PhoneNumber = "0775438274",
-                            PostalCode = "2000",
-                            State = "CP",
-                            StreetAddress = "34-d Katugasthota Road"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Mathale",
-                            Name = "I Come",
-                            PhoneNumber = "0723958473",
-                            PostalCode = "3000",
-                            State = "CP",
-                            StreetAddress = "334 Mathale Road"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Kandy",
-                            Name = "We Can",
-                            PhoneNumber = "0712307665",
-                            PostalCode = "22000",
-                            State = "CP",
-                            StreetAddress = "343d Watapuluwa "
-                        },
-                        new
-                        {
-                            Id = 4,
-                            City = "Colombo",
-                            Name = "Can You",
-                            PhoneNumber = "0798766543",
-                            PostalCode = "5000",
-                            State = "WP",
-                            StreetAddress = "3123/A Colombo Road"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            City = "Puththalama",
-                            Name = "All Go",
-                            PhoneNumber = "0732114335",
-                            PostalCode = "122000",
-                            State = "NP",
-                            StreetAddress = "54 Puththalama Road"
-                        });
                 });
 
             modelBuilder.Entity("Bulky.Models.Product", b =>

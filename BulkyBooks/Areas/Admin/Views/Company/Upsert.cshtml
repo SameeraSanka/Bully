@@ -1,0 +1,65 @@
+﻿@model CompanyVM
+<form method="post" class="p-2" enctype="multipart/form-data">
+	<input asp-for="Company.Id" hidden />
+
+
+	<div class="row">
+		<div class="col-12">
+			<div class=" p-3 my-4 border-0 rounded  shadow">
+				<div class="row pb-2">
+					<h1 class="text-primary"> @(Model.Company.Id != 0 ? "Update" : "Create") Company</h1>
+
+				</div>
+				@* <div asp-validation-summary="All"></div> *@
+				<hr />
+				<div class="row d-flex">
+					<div class="form-floating mb-3 col-md-6">
+						<input asp-for="Company.Name" class="form-control" placeholder="name@example.com" />
+						<label asp-for="Company.Name" class="ms-2 text-muted">Company Name</label>
+						<span asp-validation-for="Company.Name" class="text-danger"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-6">
+						<input asp-for="Company.StreetAddress" class="form-control" placeholder="name@example.com" />
+						<label asp-for="Company.StreetAddress" class="ms-2 text-muted">Street Address</label>
+						<span asp-validation-for="Company.StreetAddress" class="text-danger"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-6">
+						<input asp-for="Company.City" class="form-control" placeholder="name@example.com" />
+						<label asp-for="Company.City" class="ms-2 text-muted">City</label>
+						<span asp-validation-for="Company.City" class="text-danger"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-6">
+						<input asp-for="Company.State" class="form-control" placeholder="name@example.com" />
+						<label asp-for="Company.State" class="ms-2 text-muted">State</label>
+						<span asp-validation-for="Company.State" class="text-danger"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-6">
+						<input asp-for="Company.PostalCode" class="form-control" placeholder="name@example.com" />
+						<label asp-for="Company.PostalCode" class="ms-2 text-muted">Postal Code</label>
+						<span asp-validation-for="Company.PostalCode" class="text-danger"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-6">
+						<input asp-for="Company.PhoneNumber" class="form-control" placeholder="name@example.com" />
+						<label asp-for="Company.PhoneNumber" class="ms-2 text-muted">Phone Number</label>
+						<span asp-validation-for="Company.PhoneNumber" class="text-danger"></span>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-primary mt-4 form-control">@(Model.Company.Id != 0 ? "Update" : "Create") Company</button>
+					</div>
+					<div class="col-6 col-md-3">
+						<a asp-controller="Company" asp-action="Index" class="btn btn-danger mt-4 form-control">Go Back To List </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

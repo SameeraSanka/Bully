@@ -14,7 +14,7 @@ namespace Bully.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        //public DbSet<NoNeed> NoNeeds { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -113,7 +113,59 @@ namespace Bully.DataAccess.Data
 					ImageUrl = ""
 				}
                 );
-        }
+			modelBuilder.Entity<Company>().HasData(
+			  new Company
+			  {
+				  Id = 1,
+				  Name = "You Go",
+				  StreetAddress = "34-d Katugasthota Road",
+				  City = "Kandy",
+				  State = "CP",
+				  PostalCode = "2000",
+				  PhoneNumber = "0775438274",
+			  },
+			  new Company
+			  {
+				  Id = 2,
+				  Name = "I Come",
+				  StreetAddress = "334 Mathale Road",
+				  City = "Mathale",
+				  State = "CP",
+				  PostalCode = "3000",
+				  PhoneNumber = "0723958473",
+			  },
+			  new Company
+			  {
+				  Id = 3,
+				  Name = "We Can",
+				  StreetAddress = "343d Watapuluwa ",
+				  City = "Kandy",
+				  State = "CP",
+				  PostalCode = "22000",
+				  PhoneNumber = "0712307665",
+			  },
+			  new Company
+			  {
+				  Id = 4,
+				  Name = "Can You",
+				  StreetAddress = "3123/A Colombo Road",
+				  City = "Colombo",
+				  State = "WP",
+				  PostalCode = "5000",
+				  PhoneNumber = "0798766543",
+			  },
+			  new Company
+			  {
+				  Id = 5,
+				  Name = "All Go",
+				  StreetAddress = "54 Puththalama Road",
+				  City = "Puththalama",
+				  State = "NP",
+				  PostalCode = "122000",
+				  PhoneNumber = "0732114335",
+			  }
+			   );
+		}
 
     }
 }
