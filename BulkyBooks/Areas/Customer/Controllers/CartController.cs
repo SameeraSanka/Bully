@@ -75,7 +75,32 @@ namespace BulkyBooks.Areas.Customer.Controllers
 
 		public IActionResult Summery()
 		{
-			return View();
+			var claimsIdentity = (ClaimsIdentity)User.Identity;
+			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+			ShoppingCartVM = new()
+			{
+				shoppingCartsList = _unitOfWork.ShoppingCart.GetAll(
+				shoppingItems => shoppingItems.ApplicationUserId == userId,
+				includeProperties: "Product"),
+				orderHeader = new()
+			};
+
+			ShoppingCartVM.orderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+
+			ShoppingCartVM.orderHeader.Name = ShoppingCartVM.orderHeader.ApplicationUser.FirstName;
+			ShoppingCartVM.orderHeader.PhoneNumber = ShoppingCartVM.orderHeader.ApplicationUser.PhoneNumber;
+			ShoppingCartVM.orderHeader.StreetAddress = ShoppingCartVM.orderHeader.ApplicationUser.StreetAddress;
+			ShoppingCartVM.orderHeader.City = ShoppingCartVM.orderHeader.ApplicationUser.City;
+			ShoppingCartVM.orderHeader.State = ShoppingCartVM.orderHeader.ApplicationUser.State;
+			ShoppingCartVM.orderHeader.PostalCode = ShoppingCartVM.orderHeader.ApplicationUser.PostalCode;
+
+			foreach (var cart in ShoppingCartVM.shoppingCartsList)
+			{
+				cart.Price = GetPriceBasedOnQuantity(cart);
+				ShoppingCartVM.orderHeader.OrderTotal += (cart.Price * cart.Count);
+			}
+			return View(ShoppingCartVM);
 		}
 
 		private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
