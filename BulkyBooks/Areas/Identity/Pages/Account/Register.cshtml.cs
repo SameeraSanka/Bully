@@ -171,6 +171,7 @@ namespace BulkyBooks.Areas.Identity.Pages.Account
                 user.City = Input.City;
                 user.State = Input.State;
                 user.PostalCode = Input.PostalCode; 
+                user.StreetAddress = Input.StreetAddress;
                 user.PhoneNumber = Input.PhoneNumber;
 
                 if (Input.Role == SD.Role_Company)
