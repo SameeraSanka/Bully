@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\order.js" />
     <Content Remove="wwwroot\js\product.js" />
   </ItemGroup>
 
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\Order.js" />
     <None Include="wwwroot\js\product.js" />
   </ItemGroup>
 
