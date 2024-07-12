@@ -29,6 +29,16 @@ builder.Services.ConfigureApplicationCookie(options =>
 	options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 
+//session add krnne mehema itapasse pipline eketh dnna one pahala
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
 builder.Services.AddRazorPages(); //meken thama identity eke thiyna pages hoygnne
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -51,6 +61,7 @@ StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey"
 app.UseRouting();
 app.UseAuthorization();
 app.UseAuthorization();
+app.UseSession(); // uda configer krapu session ela methna call kranwa
 app.MapRazorPages(); //methana eka call krnna one
 app.MapControllerRoute(
     name: "default",
