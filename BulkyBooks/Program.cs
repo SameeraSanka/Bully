@@ -1,3 +1,4 @@
+using Bulky.DataAccess.DbInitializer;
 using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Utility;
@@ -38,6 +39,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.AddRazorPages(); //meken thama identity eke thiyna pages hoygnne
 
@@ -55,6 +57,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
@@ -62,9 +65,21 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseAuthorization();
 app.UseSession(); // uda configer krapu session ela methna call kranwa
+SeedDatabase(); // pahalama dapu eka methana cl krnna
 app.MapRazorPages(); //methana eka call krnna one
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+//azur deplol krddi methana mehema dnna
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
